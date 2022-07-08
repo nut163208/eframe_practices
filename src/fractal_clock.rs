@@ -154,6 +154,13 @@ impl FractalClock {
             rect,
         );
 
+        // 背景色の変更
+        shapes.push(Shape::rect_filled(
+            rect,
+            Rounding::none(),
+            Color32::from(Hsva::new((((self.time + 30.0) % 60.0) / 60.0) as f32, 1.0, 0.02, 1.0)),
+        ));
+
         let mut paint_line = |points: [Pos2; 2], color: Color32, width: f32| {
             let line = [to_screen * points[0], to_screen * points[1]];
 
@@ -186,7 +193,11 @@ impl FractalClock {
         for (i, hand) in hands.iter().enumerate() {
             let center = pos2(0.0, 0.0);
             let end = center + hand.vec;
-            paint_line([center, end], Color32::from(Hsva::new(((self.time % 60.0) / 60.0) as f32, 0.5, 1.0, 1.0)), width);
+            paint_line(
+                [center, end],
+                Color32::from(Hsva::new(((self.time % 60.0) / 60.0) as f32, 0.8, 1.0, 1.0)),
+                width
+            );
             if i < 2 {
                 nodes.push(Node {
                     pos: end,
@@ -219,7 +230,7 @@ impl FractalClock {
                     };
                     paint_line(
                         [a.pos, b.pos],
-                        Color32::from(Hsva::new(((self.time % 60.0) / 60.0) as f32, 0.5, 1.0, luminance)),
+                        Color32::from(Hsva::new(((self.time % 60.0) / 60.0) as f32, 0.8, 1.0, luminance)),
                         width,
                     );
                     new_nodes.push(b);
