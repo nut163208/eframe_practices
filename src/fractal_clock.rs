@@ -20,7 +20,7 @@ impl eframe::App for FractalClockApp {
         eframe::set_value(storage, eframe::APP_KEY, self);
     }
 
-    fn update(&mut self, ctx: &egui::Context, frame: &mut eframe::Frame) {
+    fn update(&mut self, ctx: &egui::Context, _frame: &mut eframe::Frame) {
         egui::CentralPanel::default()
             .frame(egui::Frame::dark_canvas(&ctx.style()))
             .show(ctx, |ui| {
@@ -29,7 +29,7 @@ impl eframe::App for FractalClockApp {
     }
 }
 
-use egui::{containers::*, widgets::*, *};
+use egui::{containers::*, widgets::*, *, color::Hsva};
 use std::f32::consts::TAU;
 
 #[derive(PartialEq, serde::Deserialize, serde::Serialize)]
@@ -186,7 +186,7 @@ impl FractalClock {
         for (i, hand) in hands.iter().enumerate() {
             let center = pos2(0.0, 0.0);
             let end = center + hand.vec;
-            paint_line([center, end], Color32::from_additive_luminance(255), width);
+            paint_line([center, end], Color32::from(Hsva::new(((self.time % 60.0) / 60.0) as f32, 0.5, 1.0, 1.0)), width);
             if i < 2 {
                 nodes.push(Node {
                     pos: end,
@@ -219,7 +219,7 @@ impl FractalClock {
                     };
                     paint_line(
                         [a.pos, b.pos],
-                        Color32::from_additive_luminance(luminance_u8),
+                        Color32::from(Hsva::new(((self.time % 60.0) / 60.0) as f32, 0.5, 1.0, luminance)),
                         width,
                     );
                     new_nodes.push(b);
