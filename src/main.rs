@@ -11,6 +11,6 @@ fn main() {
     eframe::run_native(
         "eframe practice",
         native_options,
-        Box::new(|cc| Box::new(eframe_practice::TemplateApp::new(cc))),
+        Box::new(|cc| Box::new(eframe_practice::FractalClockApp::new(cc))),
     );
 }
