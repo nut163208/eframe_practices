@@ -1,7 +1,7 @@
 #![warn(clippy::all, rust_2018_idioms)]
 
-mod app;
-pub use app::TemplateApp;
+mod fractal_clock;
+pub use fractal_clock::FractalClockApp;
 
 // ----------------------------------------------------------------------------
 // When compiling for web:
@@ -23,4 +23,12 @@ pub fn start(canvas_id: &str) -> Result<(), eframe::wasm_bindgen::JsValue> {
     tracing_wasm::set_as_global_default();
 
     eframe::start_web(canvas_id, Box::new(|cc| Box::new(TemplateApp::new(cc))))
+}
+
+pub(crate) fn seconds_since_midnight() -> Option<f64> {
+    use chrono::Timelike;
+    let time = chrono::Local::now().time();
+    let seconds_since_midnight =
+        time.num_seconds_from_midnight() as f64 + 1e-9 * (time.nanosecond() as f64);
+    Some(seconds_since_midnight)
 }
