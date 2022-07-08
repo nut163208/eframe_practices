@@ -96,7 +96,7 @@ impl eframe::App for TemplateApp {
                 "https://github.com/emilk/eframe_template/blob/master/",
                 "Source code."
             ));
-            
+
             ui.separator();
 
             ui.heading("eframe practice");
@@ -105,7 +105,7 @@ impl eframe::App for TemplateApp {
                 "https://github.com/nut163208/eframe_practices/blob/master/",
                 "Source code."
             ));
-            
+
             egui::warn_if_debug_build(ui);
         });
 
