@@ -22,7 +22,7 @@ pub fn start(canvas_id: &str) -> Result<(), eframe::wasm_bindgen::JsValue> {
     // Redirect tracing to console.log and friends:
     tracing_wasm::set_as_global_default();
 
-    eframe::start_web(canvas_id, Box::new(|cc| Box::new(TemplateApp::new(cc))))
+    eframe::start_web(canvas_id, Box::new(|cc| Box::new(FractalClockApp::new(cc))))
 }
 
 pub(crate) fn seconds_since_midnight() -> Option<f64> {
