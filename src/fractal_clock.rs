@@ -1,5 +1,4 @@
-#[derive(Default)]
-#[derive(serde::Deserialize, serde::Serialize)]
+#[derive(Default, serde::Deserialize, serde::Serialize)]
 #[serde(default)]
 pub struct FractalClockApp {
     fractal_clock: FractalClock,
@@ -20,7 +19,7 @@ impl eframe::App for FractalClockApp {
     fn save(&mut self, storage: &mut dyn eframe::Storage) {
         eframe::set_value(storage, eframe::APP_KEY, self);
     }
-    
+
     fn update(&mut self, ctx: &egui::Context, frame: &mut eframe::Frame) {
         egui::CentralPanel::default()
             .frame(egui::Frame::dark_canvas(&ctx.style()))
@@ -30,12 +29,10 @@ impl eframe::App for FractalClockApp {
     }
 }
 
-
 use egui::{containers::*, widgets::*, *};
 use std::f32::consts::TAU;
 
-#[derive(PartialEq)]
-#[derive(serde::Deserialize, serde::Serialize)]
+#[derive(PartialEq, serde::Deserialize, serde::Serialize)]
 #[serde(default)]
 pub struct FractalClock {
     paused: bool,
