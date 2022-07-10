@@ -162,7 +162,7 @@ impl FractalClock {
                 (((self.time + 30.0) % 60.0) / 60.0) as f32,
                 1.0,
                 0.02,
-                1.0
+                1.0,
             )),
         ));
 
@@ -239,7 +239,7 @@ impl FractalClock {
                             ((self.time % 60.0) / 60.0) as f32,
                             0.8,
                             1.0,
-                            luminance
+                            luminance,
                         )),
                         width,
                     );
