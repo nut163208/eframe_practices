@@ -158,7 +158,12 @@ impl FractalClock {
         shapes.push(Shape::rect_filled(
             rect,
             Rounding::none(),
-            Color32::from(Hsva::new((((self.time + 30.0) % 60.0) / 60.0) as f32, 1.0, 0.02, 1.0)),
+            Color32::from(Hsva::new(
+                (((self.time + 30.0) % 60.0) / 60.0) as f32,
+                1.0,
+                0.02,
+                1.0
+            )),
         ));
 
         let mut paint_line = |points: [Pos2; 2], color: Color32, width: f32| {
@@ -196,7 +201,7 @@ impl FractalClock {
             paint_line(
                 [center, end],
                 Color32::from(Hsva::new(((self.time % 60.0) / 60.0) as f32, 0.8, 1.0, 1.0)),
-                width
+                width,
             );
             if i < 2 {
                 nodes.push(Node {
@@ -230,7 +235,12 @@ impl FractalClock {
                     };
                     paint_line(
                         [a.pos, b.pos],
-                        Color32::from(Hsva::new(((self.time % 60.0) / 60.0) as f32, 0.8, 1.0, luminance)),
+                        Color32::from(Hsva::new(
+                            ((self.time % 60.0) / 60.0) as f32,
+                            0.8,
+                            1.0,
+                            luminance
+                        )),
                         width,
                     );
                     new_nodes.push(b);
