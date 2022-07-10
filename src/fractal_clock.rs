@@ -29,7 +29,7 @@ impl eframe::App for FractalClockApp {
     }
 }
 
-use egui::{containers::*, widgets::*, *, color::Hsva};
+use egui::{color::Hsva, containers::*, widgets::*, *};
 use std::f32::consts::TAU;
 
 #[derive(PartialEq, serde::Deserialize, serde::Serialize)]
